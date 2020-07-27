@@ -1,6 +1,8 @@
+#ifndef NOTIFIER_H
+#define NOTIFIER_H
+
 #include <Arduino.h>
 #include <notification.h>
-#include <rgb/simple.h>
 
 #define BUFF_SIZE 16
 
@@ -64,3 +66,5 @@ template <class LedClass>
 void Notifier<LedClass>::cleanNotification(){
     bitWrite(this->available, this->execution_index, 0);
 }
+
+#endif

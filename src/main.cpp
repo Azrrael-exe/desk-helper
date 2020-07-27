@@ -1,6 +1,8 @@
 #include <Arduino.h>
+#include <notification.h>
 #include <notifier.h>
-//#include <rgb/simple.h>
+#include <rgb/simple.h>
+
 
 BasicRGBLed led = BasicRGBLed(6, 10, 11);
 Notifier<BasicRGBLed> notifier = Notifier<BasicRGBLed>(led, 1000);

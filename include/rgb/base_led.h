@@ -1,3 +1,6 @@
+#ifndef BASELED_H
+#define BASELED_H
+
 #include <Arduino.h>
 
 class BaseLed {
@@ -42,3 +45,5 @@ uint8_t BaseLed::getGreen(){
 uint8_t BaseLed::getBlue(){
     return this->blue;
 }
+
+#endif

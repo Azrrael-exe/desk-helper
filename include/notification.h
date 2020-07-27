@@ -1,3 +1,6 @@
+#ifndef NOTIFICATION_H
+#define NOTIFICATION_H
+
 #include <Arduino.h>
 
 class Notification {
@@ -32,3 +35,5 @@ void Notification::getColorComponents(uint8_t &red, uint8_t &green, uint8_t &blu
     green = uint8_t(this->color >> 8);
     blue = uint8_t(this->color);
 }
+
+#endif
