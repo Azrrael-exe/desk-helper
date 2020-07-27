@@ -1,3 +1,6 @@
+#ifndef BASICRGBLED_H
+#define BASICRGBLED_H
+
 #include <Arduino.h>
 #include <rgb/base_led.h>
 
@@ -36,3 +39,5 @@ void BasicRGBLed::setColor(uint8_t red, uint8_t green, uint8_t blue) {
     analogWrite(this->green_pin, this->green);
     analogWrite(this->blue_pin, this->blue);
 }
+
+#endif
