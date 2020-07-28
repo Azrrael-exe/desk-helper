@@ -2,18 +2,20 @@
 #include <notification.h>
 #include <notifier.h>
 #include <rgb/simple.h>
-
+#include <com_layer.h>
 
 BasicRGBLed led = BasicRGBLed(6, 10, 11);
 Notifier<BasicRGBLed> notifier = Notifier<BasicRGBLed>(led, 1000);
+ComLayer com_layer = ComLayer(0x7e);
 
 void setup() {
     led.init();
-    notifier.addNotification(Notification(0x0A, 0x00640000));
-    notifier.addNotification(Notification(0x0B, 0x00006400));
-    notifier.addNotification(Notification(0x0C, 0x00000064));
+    Serial.begin(115200);
 }
 
-void loop() {    
+void loop() {
+    if(com_layer.available(Serial)){
+        notifier.addNotification(com_layer.getNotification());
+    }  
     notifier.execute();
 }
