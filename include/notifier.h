@@ -9,7 +9,6 @@
 template <class LedClass>
 class Notifier {
     private:
-        void cleanNotification();
         void executeLeds(LedClass &led, uint8_t red, uint8_t green, uint8_t blue);
         Notification buffer[BUFF_SIZE];
         uint16_t available;
@@ -26,7 +25,7 @@ class Notifier {
         }
         void execute();
         bool addNotification(Notification notification);
-        
+        void cleanNotification(uint8_t source);
 };
 
 template <class LedClass>
@@ -42,6 +41,9 @@ void Notifier<LedClass>::execute(){
             uint8_t red, green, blue;
             this->buffer[this->exec_index].getColorComponents(red, green, blue);
             this->executeLeds(this->led, red, green, blue);
+        }
+        if(this->available == 0xFFFF){
+            this->executeLeds(this->led, 0, 0, 0);
         }
         exec_index += 1;
         if(exec_index > BUFF_SIZE-1){
@@ -63,8 +65,13 @@ bool Notifier<LedClass>::addNotification(Notification notification){
 }
 
 template <class LedClass>
-void Notifier<LedClass>::cleanNotification(){
-    bitWrite(this->available, this->execution_index, 0);
+void Notifier<LedClass>::cleanNotification(uint8_t source) {
+    for(int i = 0; i<BUFF_SIZE; i++){
+        if(buffer[i].getType() == source){
+            bitWrite(this->available, i, 1);
+            return;
+        }
+    }
 }
 
 #endif
