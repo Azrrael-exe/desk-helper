@@ -4,6 +4,8 @@
 #include <rgb/simple.h>
 #include <com_layer.h>
 
+#define VERSION "0.0.0"
+
 BasicRGBLed led = BasicRGBLed(6, 10, 11);
 Notifier<BasicRGBLed> notifier = Notifier<BasicRGBLed>(led, 1000);
 ComLayer com_layer = ComLayer(0x7e);
